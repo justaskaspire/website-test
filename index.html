@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090b16">
+<meta name="description" content="A little corner of the internet for curious minds. Explore, experiment, and keep building.">
+<title>Curio — Stay curious.</title>
+<style>
+:root{color-scheme:dark;--bg:#090b16;--panel:rgba(255,255,255,.065);--line:rgba(255,255,255,.12);--text:#f4f5ff;--muted:#a7acc4;--a:#9c8cff;--b:#56e0c2}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 12% 10%,#282052 0,transparent 38%),radial-gradient(ellipse at 90% 80%,#103d42 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;display:flex;flex-direction:column}
+header{width:min(1080px,92%);margin:0 auto;padding:26px 0;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:11px;align-items:center;font-weight:800;letter-spacing:.08em}.logo{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#101322;font-size:19px}.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:8px 12px;border-radius:99px}
+main{width:min(900px,92%);margin:auto; padding:60px 0 90px;text-align:center}.eyebrow{color:var(--b);font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}.orb{width:104px;height:104px;margin:28px auto 30px;border-radius:34px;transform:rotate(-9deg);background:linear-gradient(145deg,rgba(156,140,255,.95),rgba(86,224,194,.9));box-shadow:0 0 90px #8f7dff55;display:grid;place-items:center;font-size:48px}.orb span{transform:rotate(9deg)}
+h1{font-size:clamp(46px,9vw,86px);line-height:.98;letter-spacing:-.065em;margin:0 auto 22px;max-width:780px}h1 em{font-style:normal;background:linear-gradient(90deg,#b5a8ff,#76f0d4);background-clip:text;color:transparent}.intro{max-width:570px;margin:0 auto;color:var(--muted);font-size:17px;line-height:1.7}
+.card{max-width:610px;margin:42px auto 0;padding:26px;border:1px solid var(--line);border-radius:24px;background:var(--panel);backdrop-filter:blur(18px);box-shadow:0 22px 70px #0003}.card small{color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:700}.idea{font-size:clamp(20px,4vw,27px);line-height:1.45;margin:15px 0 23px;min-height:78px}
+button{border:0;border-radius:13px;padding:14px 19px;font:700 14px inherit;cursor:pointer;transition:transform .18s,filter .18s}.primary{background:linear-gradient(100deg,#b2a3ff,#6be9d0);color:#101322}.secondary{background:transparent;color:var(--muted);border:1px solid var(--line);margin-left:8px}.primary:hover,.secondary:hover{transform:translateY(-2px);filter:brightness(1.08)}button:focus-visible{outline:3px solid white;outline-offset:4px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;max-width:760px;margin:46px auto 0;text-align:left}.feature{padding:18px;border:1px solid var(--line);border-radius:17px;background:#ffffff08}.feature b{display:block;font-size:14px;margin:10px 0 5px}.feature p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.icon{font-size:20px}
+footer{margin-top:auto;text-align:center;color:#777d98;font-size:12px;padding:24px}
+@media(max-width:600px){main{padding:48px 0 65px}.features{grid-template-columns:1fr}.feature{display:flex;gap:13px;align-items:flex-start}.feature b{margin:0 0 4px}.card{padding:22px 16px}.secondary{margin:10px 0 0}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">✦</div>CURIO</div><div class="tag">A tiny experiment in the internet</div></header>
+<main>
+<div class="eyebrow">For the endlessly curious</div>
+<div class="orb"><span>✧</span></div>
+<h1>Stay curious.<br><em>Build something.</em></h1>
+<p class="intro">The internet is a big place. Start with one small idea, ask a better question, and see where it takes you.</p>
+<section class="card" aria-live="polite">
+<small>Your next little adventure</small>
+<div class="idea" id="idea">What is one everyday problem you could solve with a tiny website?</div>
+<button class="primary" id="newIdea">Give me an idea ↗</button>
+<button class="secondary" id="copyIdea">Copy idea</button>
+</section>
+<div class="features">
+<div class="feature"><div class="icon">🧠</div><div><b>Think freely</b><p>Big discoveries often begin with small questions.</p></div></div>
+<div class="feature"><div class="icon">🛠️</div><div><b>Make things</b><p>Turn a thought into something real, one step at a time.</p></div></div>
+<div class="feature"><div class="icon">🌱</div><div><b>Keep growing</b><p>You don't need to know everything to begin.</p></div></div>
+</div>
+</main>
+<footer>Made for curious minds · One small step counts.</footer>
+<script>
+const ideas=[
+"What is one everyday problem you could solve with a tiny website?",
+"Build a page that teaches someone one useful thing in 60 seconds.",
+"Can you make a boring task feel fun with a little bit of code?",
+"Pick a skill you admire. What is the smallest way to practise it today?",
+"Imagine a tool that would save you five minutes every day. What would it do?",
+"Create a digital home for an idea you don't want to forget.",
+"Explain a complicated topic using only three simple cards."
+];
+let last=0;
+const idea=document.getElementById('idea');
+document.getElementById('newIdea').addEventListener('click',()=>{
+ let next; do{next=Math.floor(Math.random()*ideas.length)}while(next===last);
+ last=next; idea.textContent=ideas[next];
+});
+document.getElementById('copyIdea').addEventListener('click',async()=>{
+ const btn=document.getElementById('copyIdea');
+ try{await navigator.clipboard.writeText(idea.textContent);btn.textContent='Copied ✓';}
+ catch{btn.textContent='Select the text to copy';}
+ setTimeout(()=>btn.textContent='Copy idea',1800);
+});
+</script>
+</body>
+</html>
